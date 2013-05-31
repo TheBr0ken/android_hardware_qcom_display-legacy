@@ -552,7 +552,7 @@ static int set_image(copybit_context_t* ctx, uint32 surfaceId,
         info.height = rhs->h;
         info.format = rhs->format;
 
-        yuvPlaneInfo yuvInfo = {0};
+        yuvPlaneInfo yuvInfo;
         status = calculate_yuv_offset_and_stride(info, yuvInfo);
         if(status != COPYBIT_SUCCESS) {
             ALOGE("%s: calculate_yuv_offset_and_stride error", __FUNCTION__);

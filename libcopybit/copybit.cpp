@@ -235,10 +235,10 @@ static int msm_copybit(struct copybit_context_t *dev, void const *list)
 #if DEBUG_MDP_ERRORS
         struct mdp_blit_req_list const* l =
             (struct mdp_blit_req_list const*)list;
-        for (unsigned int i=0 ; i<l->count ; i++) {
+        for (int i=0 ; i<l->count ; i++) { 
             ALOGE("%d: src={w=%d, h=%d, f=%d, rect={%d,%d,%d,%d}}\n"
                   "    dst={w=%d, h=%d, f=%d, rect={%d,%d,%d,%d}}\n"
-                  "    flags=%08x"
+                  "    flags=%08lx
                   ,
                   i,
                   l->req[i].src.width,
@@ -407,8 +407,8 @@ static int stretch_copybit(
             }
         }
 
-        if (src_rect->l < 0 || (uint32_t)src_rect->r > src->w ||
-            src_rect->t < 0 || (uint32_t)src_rect->b > src->h) {
+        if (src_rect->l < 0 || src_rect->r > src->w ||
+            src_rect->t < 0 || src_rect->b > src->h) {
             // this is always invalid
             ALOGE ("%s : Invalid source rectangle : src_rect l %d t %d r %d b %d",\
                    __FUNCTION__, src_rect->l, src_rect->t, src_rect->r, src_rect->b);
